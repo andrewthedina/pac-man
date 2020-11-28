@@ -1,0 +1,17 @@
+.wall {
+    background-color: blue;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 420px;
+    height: 420px;
+    border: solid black;
+}
+
+.grid div {
+    background-color: blue;
+    width: 15px;
+    height: 15px;
+}
