@@ -1,6 +1,4 @@
-.wall {
-    background-color: blue;
-}
+
 
 .grid {
     display: flex;
@@ -11,7 +9,16 @@
 }
 
 .grid div {
-    background-color: blue;
     width: 15px;
     height: 15px;
+}
+
+
+.wall {
+    background-color: blue;
+}
+
+.power-pellet {
+    background-color:orange;
+    border-radius: 50%;
 }
