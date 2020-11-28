@@ -64,6 +64,9 @@ function movePacMan(event) {
         case 40:
         if(!squares[pacmanCurrentIndex + 28].classList.contains('wall')) {
             adjustPacMan(28)
+            
+        } else {
+            console.log('contains wall')
         }
         break
         
@@ -71,6 +74,8 @@ function movePacMan(event) {
         case 38:
         if(!squares[pacmanCurrentIndex - 28].classList.contains('wall')) {
             adjustPacMan(-28)
+        } else {
+            console.log('contains wall')
         }
         
         break
@@ -79,6 +84,8 @@ function movePacMan(event) {
         case 37:
         if(!squares[pacmanCurrentIndex - 1].classList.contains('wall')) {
             adjustPacMan(-1)
+        } else {
+            console.log('contains wall')
         }
         break
 
@@ -86,6 +93,8 @@ function movePacMan(event) {
         case 39:
         if(!squares[pacmanCurrentIndex - 1].classList.contains('wall')) {
             adjustPacMan(1)
+        } else {
+            console.log('contains wall')
         }
         break
     }
