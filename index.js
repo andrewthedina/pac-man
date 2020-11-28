@@ -71,32 +71,31 @@ function movePacMan(event) {
     switch(event.keyCode) {
         // move down
         case 40:
-        squares[pacmanCurrentIndex].classList.remove('pac-man')
-        pacmanCurrentIndex += 28;
-        squares[pacmanCurrentIndex].classList.add('pac-man')
+        adjustPacMan(28)
         break
         
         // move up
         case 38:
-        squares[pacmanCurrentIndex].classList.remove('pac-man')
-        pacmanCurrentIndex -= 28;
-        squares[pacmanCurrentIndex].classList.add('pac-man')
+        adjustPacMan(-28)
         break
         
         // move left
         case 37:
-        squares[pacmanCurrentIndex].classList.remove('pac-man')
-        pacmanCurrentIndex -= 1;
-        squares[pacmanCurrentIndex].classList.add('pac-man')
+        adjustPacMan(-1)
         break
 
         // move right
         case 39:
-        squares[pacmanCurrentIndex].classList.remove('pac-man')
-        pacmanCurrentIndex += 1;
-        squares[pacmanCurrentIndex].classList.add('pac-man')
+        adjustPacMan(1)
         break
     }
 }
+
+function adjustPacMan(amount) {
+    squares[pacmanCurrentIndex].classList.remove('pac-man')
+    pacmanCurrentIndex += amount;
+    squares[pacmanCurrentIndex].classList.add('pac-man')
+}
+
 
 document.addEventListener('keyup', movePacMan)
