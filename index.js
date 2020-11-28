@@ -57,8 +57,46 @@ createBoard()
 
 
 // insert pac-man
-function createPacMan() {
-    squares[490].classList.add('pac-man')
+let pacmanCurrentIndex = 490
+squares[490].classList.add('pac-man')
+
+
+// down - 40
+// up key - 38
+// left - 37
+// right - 39
+
+function movePacMan(event) {
+    
+    switch(event.keyCode) {
+        // move down
+        case 40:
+        squares[pacmanCurrentIndex].classList.remove('pac-man')
+        pacmanCurrentIndex += 28;
+        squares[pacmanCurrentIndex].classList.add('pac-man')
+        break
+        
+        // move up
+        case 38:
+        squares[pacmanCurrentIndex].classList.remove('pac-man')
+        pacmanCurrentIndex -= 28;
+        squares[pacmanCurrentIndex].classList.add('pac-man')
+        break
+        
+        // move left
+        case 37:
+        squares[pacmanCurrentIndex].classList.remove('pac-man')
+        pacmanCurrentIndex -= 1;
+        squares[pacmanCurrentIndex].classList.add('pac-man')
+        break
+
+        // move right
+        case 39:
+        squares[pacmanCurrentIndex].classList.remove('pac-man')
+        pacmanCurrentIndex += 1;
+        squares[pacmanCurrentIndex].classList.add('pac-man')
+        break
+    }
 }
 
-createPacMan()
+document.addEventListener('keyup', movePacMan)
