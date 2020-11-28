@@ -40,14 +40,22 @@ function createBoard() {
         grid.appendChild(square)
         squares.push(square)
 
-        // if (layout[i] === 0) {
-        //     squares[i].classList.add('pac-dot')
-        // } else if (layout[i] === 1) {
-        //     squares[i].classList.add('wall')
-        // } else if (layout[i] === 2) {
-        //     squares[i].classList.add('ghost-lair')
-        // } else if (layout[i] === 3) {
-        //     squares[i].classList.add('power-pellet')
+        // switch(layout[i]) {
+        // case 0:
+        // squares[i].classList.add('pac-dot')
+        // break
+
+        // case 1: 
+        // squares[i].classList.add('wall')
+        // break
+
+        // case 2:
+        // squares[i].classList.add('ghost-lair')
+        // break
+
+        // case 3:
+        // squares[i].classList.add('power-pellet')
+        // break
         // }
     }
 }
@@ -59,13 +67,13 @@ let pacmanCurrentIndex = 490
 squares[490].classList.add('pac-man')
 
 function movePacMan(event) {
-    let nextIndex
+    let pacmanNextIndex
     console.log(pacmanCurrentIndex)
     switch(event.keyCode) {
         // move down
         case 40:
-        nextIndex = pacmanCurrentIndex + 28
-        if(nextIndex < width * width) {
+        pacmanNextIndex = pacmanCurrentIndex + 28
+        if(pacmanNextIndex < width * width) {
             adjustPacMan(width)
         } else {
             console.log('contains wall')
@@ -74,19 +82,17 @@ function movePacMan(event) {
         
         // move up
         case 38:
-        nextIndex = pacmanCurrentIndex - width
-        if(nextIndex > -1) {
+        pacmanNextIndex = pacmanCurrentIndex - width
+        if(pacmanNextIndex > -1) {
             adjustPacMan(-width)
         } else {
             console.log('contains wall')
         }
-        
         break
         
         // move left
         case 37:
-        nextIndex = pacmanCurrentIndex - 1
-        if(nextIndex % width >= 0) {
+        if(pacmanCurrentIndex % width != 0) {
             adjustPacMan(-1)
         } else {
             console.log('contains wall')
@@ -95,8 +101,8 @@ function movePacMan(event) {
 
         // move right
         case 39:
-        nextIndex = pacmanCurrentIndex + 1
-        if(nextIndex % width != 0) {     
+        pacmanNextIndex = pacmanCurrentIndex + 1
+        if(pacmanNextIndex % width != 0) {     
             adjustPacMan(1)
         } else {
             console.log('rcontains wall')
