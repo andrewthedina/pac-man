@@ -65,9 +65,9 @@ function createBoard() {
         squares[i].classList.add('ghost-lair')
         break
 
-        // case 3:
-        // squares[i].classList.add('power-pellet')
-        // break
+        case 3:
+        squares[i].classList.add('power-pellet')
+        break
         }
     }
 }
@@ -132,6 +132,7 @@ function movePacMan(event) {
     }
     squares[pacmanCurrentIndex].classList.add('pac-man')
     eatPacDot()
+    eatPowerPellet()
 }
 
 function updateScoreBy(points) {
@@ -143,6 +144,13 @@ function eatPacDot() {
     if(squares[pacmanCurrentIndex].classList.contains('pac-dot')) {
         squares[pacmanCurrentIndex].classList.remove('pac-dot')
         updateScoreBy(1)
+    }
+}
+
+function eatPowerPellet() {
+    if(squares[pacmanCurrentIndex].classList.contains('power-pellet')) {
+        squares[pacmanCurrentIndex].classList.remove('power-pellet')
+        updateScoreBy(10)
     }
 }
 
