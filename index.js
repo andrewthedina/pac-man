@@ -1,6 +1,9 @@
 const width = 28;
 const grid = document.querySelector('.grid');
+const scoreDisplay = document.getElementById('score')
+let score = 0
 let squares = [];
+let pacmanCurrentIndex = 490
 
 const layout = [
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -33,6 +36,15 @@ const layout = [
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 ]
 
+setUpGame()
+
+function setUpGame() {
+    createBoard()
+    scoreDisplay.innerText = score
+
+    // insert pac-man
+    squares[pacmanCurrentIndex].classList.add('pac-man')
+}
 
 function createBoard() {
     for(let i = 0; i < layout.length; i++) {
@@ -41,9 +53,9 @@ function createBoard() {
         squares.push(square)
 
         switch(layout[i]) {
-        // case 0:
-        // squares[i].classList.add('pac-dot')
-        // break
+        case 0:
+        squares[i].classList.add('pac-dot')
+        break
 
         case 1: 
         squares[i].classList.add('wall')
@@ -59,12 +71,6 @@ function createBoard() {
         }
     }
 }
-
-createBoard()
-
-// insert pac-man
-let pacmanCurrentIndex = 490
-squares[490].classList.add('pac-man')
 
 function movePacMan(event) {
     let pacmanNextIndex
@@ -125,7 +131,21 @@ function movePacMan(event) {
         break
     }
     squares[pacmanCurrentIndex].classList.add('pac-man')
+    eatPacDot()
 }
+
+function updateScoreBy(points) {
+    score += points
+    scoreDisplay.innerText = score
+}
+
+function eatPacDot() {
+    if(squares[pacmanCurrentIndex].classList.contains('pac-dot')) {
+        squares[pacmanCurrentIndex].classList.remove('pac-dot')
+        updateScoreBy(1)
+    }
+}
+
 
 
 document.addEventListener('keyup', movePacMan)
