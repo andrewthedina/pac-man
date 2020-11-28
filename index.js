@@ -41,21 +41,21 @@ function createBoard() {
         squares.push(square)
 
         switch(layout[i]) {
-        case 0:
-        squares[i].classList.add('pac-dot')
-        break
+        // case 0:
+        // squares[i].classList.add('pac-dot')
+        // break
 
         case 1: 
         squares[i].classList.add('wall')
         break
 
-        case 2:
-        squares[i].classList.add('ghost-lair')
-        break
+        // case 2:
+        // squares[i].classList.add('ghost-lair')
+        // break
 
-        case 3:
-        squares[i].classList.add('power-pellet')
-        break
+        // case 3:
+        // squares[i].classList.add('power-pellet')
+        // break
         }
     }
 }
@@ -74,7 +74,10 @@ function movePacMan(event) {
         // move down
         case 40:
         pacmanNextIndex = pacmanCurrentIndex + width
-        if(pacmanNextIndex < width * width) {
+        if(
+            pacmanNextIndex < width * width &&
+            !squares[pacmanNextIndex].classList.contains('wall')
+            ) {
             pacmanCurrentIndex += width;
         }
         break
@@ -82,15 +85,23 @@ function movePacMan(event) {
         // move up
         case 38:
         pacmanNextIndex = pacmanCurrentIndex - width
-        if(pacmanNextIndex > -1) {
+        if(
+            pacmanNextIndex > -1 &&
+            !squares[pacmanNextIndex].classList.contains('wall')
+            ) {
             pacmanCurrentIndex -= width;
         }
         break
         
         // move left
         case 37:
-        if(pacmanCurrentIndex % width != 0) {
+        pacmanNextIndex = pacmanCurrentIndex - 1
+        if(
+            pacmanCurrentIndex % width != 0 &&
+            !squares[pacmanNextIndex].classList.contains('wall')
+            ) {
             pacmanCurrentIndex -= 1;
+            
             if(pacmanCurrentIndex === 364) {
                 pacmanCurrentIndex += width - 1;
             }
@@ -100,8 +111,12 @@ function movePacMan(event) {
         // move right
         case 39:
         pacmanNextIndex = pacmanCurrentIndex + 1
-        if(pacmanNextIndex % width != 0) {     
+        if(
+            pacmanNextIndex % width != 0 &&
+            !squares[pacmanNextIndex].classList.contains('wall')
+            ) {     
             pacmanCurrentIndex += 1;
+
             if(pacmanCurrentIndex === 391) {
                 pacmanCurrentIndex -= width - 1;
             }
