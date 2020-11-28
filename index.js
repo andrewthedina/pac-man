@@ -52,22 +52,13 @@ function createBoard() {
     }
 }
 
-
 createBoard()
-
 
 // insert pac-man
 let pacmanCurrentIndex = 490
 squares[490].classList.add('pac-man')
 
-
-// down - 40
-// up key - 38
-// left - 37
-// right - 39
-
 function movePacMan(event) {
-    
     switch(event.keyCode) {
         // move down
         case 40:
