@@ -164,7 +164,7 @@ class Ghost {
 }
 
 const ghosts = [
-    new Ghost('blinky', 348, 250),
+    new Ghost('blinky', 348, 200),
     new Ghost('pinky', 376, 400),
     new Ghost('inky', 351, 300),
     new Ghost('clyde', 379, 500)
@@ -179,8 +179,14 @@ ghosts.forEach(ghost => moveGhost(ghost))
 
 function moveGhost(ghost) {
     setInterval(() => {
+        const directions = [-1, 1, width, -width]
+        let randomDirection = Math.floor((Math.random() * directions.length))
+        
         squares[ghost.currentIndex].classList.remove(ghost.className)
-        ghost.currentIndex -= 1
+        
+        ghost.currentIndex += directions[randomDirection]
+
+
         squares[ghost.currentIndex].classList.add(ghost.className)
     }, ghost.speed);
 }
