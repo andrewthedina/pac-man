@@ -40,23 +40,23 @@ function createBoard() {
         grid.appendChild(square)
         squares.push(square)
 
-        // switch(layout[i]) {
-        // case 0:
-        // squares[i].classList.add('pac-dot')
-        // break
+        switch(layout[i]) {
+        case 0:
+        squares[i].classList.add('pac-dot')
+        break
 
-        // case 1: 
-        // squares[i].classList.add('wall')
-        // break
+        case 1: 
+        squares[i].classList.add('wall')
+        break
 
-        // case 2:
-        // squares[i].classList.add('ghost-lair')
-        // break
+        case 2:
+        squares[i].classList.add('ghost-lair')
+        break
 
-        // case 3:
-        // squares[i].classList.add('power-pellet')
-        // break
-        // }
+        case 3:
+        squares[i].classList.add('power-pellet')
+        break
+        }
     }
 }
 
@@ -68,15 +68,14 @@ squares[490].classList.add('pac-man')
 
 function movePacMan(event) {
     let pacmanNextIndex
-    console.log(pacmanCurrentIndex)
+    squares[pacmanCurrentIndex].classList.remove('pac-man')
+
     switch(event.keyCode) {
         // move down
         case 40:
-        pacmanNextIndex = pacmanCurrentIndex + 28
+        pacmanNextIndex = pacmanCurrentIndex + width
         if(pacmanNextIndex < width * width) {
-            adjustPacMan(width)
-        } else {
-            console.log('contains wall')
+            pacmanCurrentIndex += width;
         }
         break
         
@@ -84,18 +83,17 @@ function movePacMan(event) {
         case 38:
         pacmanNextIndex = pacmanCurrentIndex - width
         if(pacmanNextIndex > -1) {
-            adjustPacMan(-width)
-        } else {
-            console.log('contains wall')
+            pacmanCurrentIndex -= width;
         }
         break
         
         // move left
         case 37:
         if(pacmanCurrentIndex % width != 0) {
-            adjustPacMan(-1)
-        } else {
-            console.log('contains wall')
+            pacmanCurrentIndex -= 1;
+            if(pacmanCurrentIndex === 364) {
+                pacmanCurrentIndex += width - 1;
+            }
         }
         break
 
@@ -103,58 +101,13 @@ function movePacMan(event) {
         case 39:
         pacmanNextIndex = pacmanCurrentIndex + 1
         if(pacmanNextIndex % width != 0) {     
-            adjustPacMan(1)
-        } else {
-            console.log('rcontains wall')
+            pacmanCurrentIndex += 1;
+            if(pacmanCurrentIndex === 391) {
+                pacmanCurrentIndex -= width - 1;
+            }
         }
         break
     }
-
-
-    // switch(event.keyCode) {
-    //     // move down
-    //     case 40:
-    //     if(!squares[pacmanCurrentIndex + 28].classList.contains('wall')) {
-    //         adjustPacMan(28)
-            
-    //     } else {
-    //         console.log('contains wall')
-    //     }
-    //     break
-        
-    //     // move up
-    //     case 38:
-    //     if(!squares[pacmanCurrentIndex - 28].classList.contains('wall')) {
-    //         adjustPacMan(-28)
-    //     } else {
-    //         console.log('contains wall')
-    //     }
-        
-    //     break
-        
-    //     // move left
-    //     case 37:
-    //     if(!squares[pacmanCurrentIndex - 1].classList.contains('wall')) {
-    //         adjustPacMan(-1)
-    //     } else {
-    //         console.log('contains wall')
-    //     }
-    //     break
-
-    //     // move right
-    //     case 39:
-    //     if(!squares[pacmanCurrentIndex - 1].classList.contains('wall')) {
-    //         adjustPacMan(1)
-    //     } else {
-    //         console.log('contains wall')
-    //     }
-    //     break
-    // }
-}
-
-function adjustPacMan(amount) {
-    squares[pacmanCurrentIndex].classList.remove('pac-man')
-    pacmanCurrentIndex += amount;
     squares[pacmanCurrentIndex].classList.add('pac-man')
 }
 
