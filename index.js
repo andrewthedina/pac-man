@@ -49,9 +49,9 @@ function createBoard() {
         squares[i].classList.add('wall')
         break
 
-        // case 2:
-        // squares[i].classList.add('ghost-lair')
-        // break
+        case 2:
+        squares[i].classList.add('ghost-lair')
+        break
 
         // case 3:
         // squares[i].classList.add('power-pellet')
@@ -76,7 +76,8 @@ function movePacMan(event) {
         pacmanNextIndex = pacmanCurrentIndex + width
         if(
             pacmanNextIndex < width * width &&
-            !squares[pacmanNextIndex].classList.contains('wall')
+            !squares[pacmanNextIndex].classList.contains('wall') &&
+            !squares[pacmanNextIndex].classList.contains('ghost-lair')
             ) {
             pacmanCurrentIndex += width;
         }
@@ -101,7 +102,7 @@ function movePacMan(event) {
             !squares[pacmanNextIndex].classList.contains('wall')
             ) {
             pacmanCurrentIndex -= 1;
-            
+
             if(pacmanCurrentIndex === 364) {
                 pacmanCurrentIndex += width - 1;
             }
