@@ -71,22 +71,31 @@ function movePacMan(event) {
     switch(event.keyCode) {
         // move down
         case 40:
-        adjustPacMan(28)
+        if(!squares[pacmanCurrentIndex + 28].classList.contains('wall')) {
+            adjustPacMan(28)
+        }
         break
         
         // move up
         case 38:
-        adjustPacMan(-28)
+        if(!squares[pacmanCurrentIndex - 28].classList.contains('wall')) {
+            adjustPacMan(-28)
+        }
+        
         break
         
         // move left
         case 37:
-        adjustPacMan(-1)
+        if(!squares[pacmanCurrentIndex - 1].classList.contains('wall')) {
+            adjustPacMan(-1)
+        }
         break
 
         // move right
         case 39:
-        adjustPacMan(1)
+        if(!squares[pacmanCurrentIndex - 1].classList.contains('wall')) {
+            adjustPacMan(1)
+        }
         break
     }
 }
