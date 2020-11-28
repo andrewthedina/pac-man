@@ -158,7 +158,8 @@ class Ghost {
     constructor(className, startIndex, speed) {
         this.className = className,
         this.startIndex = startIndex,
-        this.speed = speed
+        this.speed = speed,
+        this.currentIndex = startIndex
     }
 }
 
@@ -174,5 +175,14 @@ ghosts.forEach(ghost => {
 })
 
 
+ghosts.forEach(ghost => moveGhost(ghost))
+
+function moveGhost(ghost) {
+    setInterval(() => {
+        squares[ghost.currentIndex].classList.remove(ghost.className)
+        ghost.currentIndex -= 1
+        squares[ghost.currentIndex].classList.add(ghost.className)
+    }, ghost.speed);
+}
 
 document.addEventListener('keyup', movePacMan)
