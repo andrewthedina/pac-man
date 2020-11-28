@@ -50,11 +50,15 @@ function createBoard() {
             squares[i].classList.add('power-pellet')
         }
     }
-    console.log(squares.length)
 }
 
 
 createBoard()
 
 
+// insert pac-man
+function createPacMan() {
+    squares[490].classList.add('pac-man')
+}
 
+createPacMan()
