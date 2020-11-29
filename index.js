@@ -17,7 +17,7 @@ const layout = [
     1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,
     1,1,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,1,1,
     1,1,1,1,1,1,0,1,1,4,4,4,4,4,4,4,4,4,4,1,1,0,1,1,1,1,1,1,
-    1,1,1,1,1,1,0,1,1,4,1,1,1,2,2,1,1,1,4,1,1,0,1,1,1,1,1,1,
+    1,1,1,1,1,1,0,1,1,4,1,1,2,2,2,2,1,1,4,1,1,0,1,1,1,1,1,1,
     1,1,1,1,1,1,0,1,1,4,1,2,2,2,2,2,2,1,4,1,1,0,1,1,1,1,1,1,
     4,4,4,4,4,4,0,0,0,4,1,2,2,2,2,2,2,1,4,0,0,0,4,4,4,4,4,4,
     1,1,1,1,1,1,0,1,1,4,1,2,2,2,2,2,2,1,4,1,1,0,1,1,1,1,1,1,
@@ -172,10 +172,10 @@ class Ghost {
 }
 
 const ghosts = [
-    new Ghost('blinky', 348, 200),
-    new Ghost('pinky', 376, 400),
-    new Ghost('inky', 351, 300),
-    new Ghost('clyde', 379, 500)
+    new Ghost('blinky', 320, 200),
+    new Ghost('pinky', 348, 400),
+    new Ghost('inky', 323, 300),
+    new Ghost('clyde', 351, 500)
 ]
 
 ghosts.forEach(ghost => {
@@ -186,6 +186,16 @@ ghosts.forEach(ghost => {
 ghosts.forEach(ghost => moveGhost(ghost))
 
 function moveGhost(ghost) {
+    // for (i = 0; i < 2; i++) {
+    //     ghost.timerId = setInterval( function() {
+    //         squares[ghost.currentIndex].classList.remove(ghost.className, 'ghost')
+    //         ghost.currentIndex -= width
+    //         squares[ghost.currentIndex].classList.add(ghost.className, 'ghost')
+    //     }, 1000);
+    // }
+
+
+
     ghost.timerId = setInterval( function() {
         const directions = [-1, 1, width, -width]
         let direction = directions[Math.floor((Math.random() * directions.length))]
