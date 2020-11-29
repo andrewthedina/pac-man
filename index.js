@@ -152,7 +152,12 @@ function eatPowerPellet() {
         squares[pacmanCurrentIndex].classList.remove('power-pellet')
         updateScoreBy(10)
         ghosts.forEach(ghost => ghost.isScared = true)
+        setTimeout(removeIsScared, 15000)
     }
+}
+
+function removeIsScared() {
+    ghosts.forEach(ghost => ghost.isScared = false)
 }
 
 class Ghost {
