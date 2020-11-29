@@ -133,6 +133,7 @@ function movePacMan(event) {
     squares[pacmanCurrentIndex].classList.add('pac-man')
     eatPacDot()
     eatPowerPellet()
+    
 }
 
 function updateScoreBy(points) {
@@ -186,16 +187,6 @@ ghosts.forEach(ghost => {
 ghosts.forEach(ghost => moveGhost(ghost))
 
 function moveGhost(ghost) {
-    // for (i = 0; i < 2; i++) {
-    //     ghost.timerId = setInterval( function() {
-    //         squares[ghost.currentIndex].classList.remove(ghost.className, 'ghost')
-    //         ghost.currentIndex -= width
-    //         squares[ghost.currentIndex].classList.add(ghost.className, 'ghost')
-    //     }, 1000);
-    // }
-
-
-
     ghost.timerId = setInterval( function() {
         const directions = [-1, 1, width, -width]
         let direction = directions[Math.floor((Math.random() * directions.length))]
@@ -227,8 +218,21 @@ function moveGhost(ghost) {
             updateScoreBy(100)
         }
 
-
+        checkForGameOver()
     }, ghost.speed);
 }
+
+
+function checkForGameOver() {
+    if (
+        squares[pacmanCurrentIndex].classList.contains('ghost') &&
+        !squares[pacmanCurrentIndex].classList.contains('scared-ghost')
+        ) {
+            squares[pacmanCurrentIndex].classList.remove('pac-man')
+            document.removeEventListener('keyup', movePacMan)
+            ghosts.forEach(ghost => clearInterval(ghost.timerId)) 
+        }
+}
+
 
 document.addEventListener('keyup', movePacMan)
