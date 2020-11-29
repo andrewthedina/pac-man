@@ -242,10 +242,11 @@ function checkForWin() {
         document.removeEventListener('keyup', movePacMan)
         scoreDisplay.innerHTML = 'You WON!'
         console.log('executed')
+        setInterval(changeWalls, 250)
     }
 }
 
-setInterval(changeWalls, 250)
+
 let walls = document.querySelectorAll('.wall')
 
 function changeWalls() {
