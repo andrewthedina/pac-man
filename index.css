@@ -18,6 +18,14 @@
     background-color: blue;
 }
 
+.wall-won {
+    background-color: gold;;   
+}
+
+.wall-lost {
+    background-color: gray;
+}
+
 .power-pellet {
     background-color:orange;
     border-radius: 50%;
@@ -60,3 +68,5 @@
     background-color: aquamarine;
     border: none;
 }
+
+

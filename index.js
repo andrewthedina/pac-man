@@ -245,4 +245,21 @@ function checkForWin() {
     }
 }
 
+setInterval(changeWalls, 250)
+let walls = document.querySelectorAll('.wall')
+
+function changeWalls() {
+    if (!walls[0].classList.contains('wall-won')) {
+        walls.forEach(wall => wall.classList.add('wall-won'))
+    } else {
+        walls.forEach(wall => wall.classList.remove('wall-won'))
+    }
+}
+
+
+
+
+    
+
+
 document.addEventListener('keyup', movePacMan)
