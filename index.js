@@ -36,15 +36,45 @@ const layout = [
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 ]
 
-setUpGame()
+// CLASSES
 
-function setUpGame() {
-    createBoard()
-    scoreDisplay.innerText = score
-
-    // insert pac-man
-    squares[pacmanCurrentIndex].classList.add('pac-man')
+class Ghost {
+    constructor(className, startIndex, speed) {
+        this.className = className,
+        this.startIndex = startIndex,
+        this.speed = speed,
+        this.currentIndex = startIndex,
+        this.isScared = false,
+        this.timerId = NaN
+    }
 }
+
+// SET UP
+
+createBoard()
+scoreDisplay.innerText = score
+
+// insert pac-man
+squares[pacmanCurrentIndex].classList.add('pac-man')
+
+// insert ghosts
+const ghosts = [
+    new Ghost('blinky', 320, 200),
+    new Ghost('pinky', 348, 250),
+    new Ghost('inky', 323, 300),
+    new Ghost('clyde', 351, 350)
+]
+
+ghosts.forEach(ghost => {
+    squares[ghost.currentIndex].classList.add(ghost.className)
+    squares[ghost.currentIndex].classList.add('ghost')
+})
+
+ghosts.forEach(ghost => moveGhost(ghost))
+
+
+
+// FUNCTIONS
 
 function createBoard() {
     for(let i = 0; i < layout.length; i++) {
@@ -162,31 +192,6 @@ function removeIsScared() {
     ghosts.forEach(ghost => ghost.isScared = false)
 }
 
-class Ghost {
-    constructor(className, startIndex, speed) {
-        this.className = className,
-        this.startIndex = startIndex,
-        this.speed = speed,
-        this.currentIndex = startIndex,
-        this.isScared = false,
-        this.timerId = NaN
-    }
-}
-
-const ghosts = [
-    new Ghost('blinky', 320, 200),
-    new Ghost('pinky', 348, 250),
-    new Ghost('inky', 323, 300),
-    new Ghost('clyde', 351, 350)
-]
-
-ghosts.forEach(ghost => {
-    squares[ghost.currentIndex].classList.add(ghost.className)
-    squares[ghost.currentIndex].classList.add('ghost')
-})
-
-ghosts.forEach(ghost => moveGhost(ghost))
-
 function moveGhost(ghost) {
     ghost.timerId = setInterval( function() {
         const directions = [-1, 1, width, -width]
@@ -246,11 +251,9 @@ function checkForWin() {
     }
 }
 
-
-let walls = document.querySelectorAll('.wall')
-
-
 function changeWalls() {
+    let walls = document.querySelectorAll('.wall')
+
     if (!walls[0].classList.contains('wall-won')) {
         walls.forEach(wall => wall.classList.add('wall-won'))
     } else {
@@ -258,5 +261,7 @@ function changeWalls() {
     }
 }
 
+
+// LISTENERS
 
 document.addEventListener('keyup', movePacMan)
