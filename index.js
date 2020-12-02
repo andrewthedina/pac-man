@@ -36,6 +36,17 @@ const layout = [
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 ]
 
+class Ghost {
+    constructor(className, startIndex, speed) {
+        this.className = className,
+        this.startIndex = startIndex,
+        this.speed = speed,
+        this.currentIndex = startIndex,
+        this.isScared = false,
+        this.timerId = NaN
+    }
+}
+
 setUpGame()
 
 function setUpGame() {
@@ -44,6 +55,22 @@ function setUpGame() {
 
     // insert pac-man
     squares[pacmanCurrentIndex].classList.add('pac-man')
+
+    
+    
+    const ghosts = [
+        new Ghost('blinky', 320, 200),
+        new Ghost('pinky', 348, 250),
+        new Ghost('inky', 323, 300),
+        new Ghost('clyde', 351, 350)
+    ]
+    
+    ghosts.forEach(ghost => {
+        squares[ghost.currentIndex].classList.add(ghost.className)
+        squares[ghost.currentIndex].classList.add('ghost')
+    })
+    
+    ghosts.forEach(ghost => moveGhost(ghost))
 }
 
 function createBoard() {
@@ -162,30 +189,7 @@ function removeIsScared() {
     ghosts.forEach(ghost => ghost.isScared = false)
 }
 
-class Ghost {
-    constructor(className, startIndex, speed) {
-        this.className = className,
-        this.startIndex = startIndex,
-        this.speed = speed,
-        this.currentIndex = startIndex,
-        this.isScared = false,
-        this.timerId = NaN
-    }
-}
 
-const ghosts = [
-    new Ghost('blinky', 320, 200),
-    new Ghost('pinky', 348, 250),
-    new Ghost('inky', 323, 300),
-    new Ghost('clyde', 351, 350)
-]
-
-ghosts.forEach(ghost => {
-    squares[ghost.currentIndex].classList.add(ghost.className)
-    squares[ghost.currentIndex].classList.add('ghost')
-})
-
-ghosts.forEach(ghost => moveGhost(ghost))
 
 function moveGhost(ghost) {
     ghost.timerId = setInterval( function() {
@@ -257,6 +261,7 @@ function changeWalls() {
         walls.forEach(wall => wall.classList.remove('wall-won'))
     }
 }
+
 
 
 

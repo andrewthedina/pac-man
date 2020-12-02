@@ -1,3 +1,19 @@
+/* TYPOGRAPHY */
+
+body {
+    font-family: 'Anton', sans-serif;
+    letter-spacing: 1px;
+    background-color: #1f1f1f;
+    color: yellow;
+}
+
+a {
+    color: yellow;
+}
+
+
+/* LAYOUT */
+
 .container {
     position: fixed;
     top: 40%;
@@ -6,18 +22,29 @@
     text-align: center;
 }
 
+.links {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+}
+
 .grid {
     display: flex;
     flex-wrap: wrap;
     width: 420px;
     height: 420px;
     border: 1rem ridge gold;
+    background-color: white;
 }
 
 .grid div {
     width: 15px;
     height: 15px;
 }
+
+
+
+/* PIECES */
 
 .wall {
     background-color: blue;
@@ -73,5 +100,3 @@
     background-color: aquamarine;
     border: none;
 }
-
-
