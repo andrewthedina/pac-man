@@ -175,9 +175,9 @@ class Ghost {
 
 const ghosts = [
     new Ghost('blinky', 320, 200),
-    new Ghost('pinky', 348, 400),
+    new Ghost('pinky', 348, 250),
     new Ghost('inky', 323, 300),
-    new Ghost('clyde', 351, 500)
+    new Ghost('clyde', 351, 350)
 ]
 
 ghosts.forEach(ghost => {
@@ -216,7 +216,7 @@ function moveGhost(ghost) {
             ghost.isScared = false
             ghost.currentIndex = ghost.startIndex
             squares[ghost.currentIndex].classList.add(ghost.className, 'ghost')
-            updateScoreBy(100)
+            updateScoreBy(40)
         }
 
         checkForGameOver()
@@ -242,12 +242,13 @@ function checkForWin() {
         document.removeEventListener('keyup', movePacMan)
         scoreDisplay.innerHTML = 'You WON!'
         console.log('executed')
-        setInterval(changeWalls, 250)
+        setInterval(changeWalls, 350)
     }
 }
 
 
 let walls = document.querySelectorAll('.wall')
+
 
 function changeWalls() {
     if (!walls[0].classList.contains('wall-won')) {
