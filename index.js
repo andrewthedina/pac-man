@@ -236,7 +236,8 @@ function checkForGameOver() {
         ) {
             squares[pacmanCurrentIndex].classList.remove('pac-man')
             document.removeEventListener('keyup', movePacMan)
-            ghosts.forEach(ghost => clearInterval(ghost.timerId))
+            ghosts.forEach(ghost => { clearInterval(ghost.timerId) 
+            squares[ghost.currentIndex].classList.add('magnify')})
             scoreDisplay.innerHTML = 'You LOSE'
         }
 }
